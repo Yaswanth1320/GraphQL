@@ -1,4 +1,5 @@
 import {users,quotes} from './fakedb.js'
+import {randomBytes} from 'crypto'
 
 export const typeDefs = `#graphql
     type Query{
@@ -13,13 +14,17 @@ export const typeDefs = `#graphql
         firstName: String!
         lastName: String!
         email: String!
+        password: String!
         quotes: [Quote!]
 
     }
-
     type Quote{
         name: String!
         by: String!
+    }
+
+    type Mutation{
+        addUser(firstName:String!,lastName:String!,email:String!,password: String!): User
     }
 `
 
@@ -32,6 +37,19 @@ export const resolvers = {
     },
     User: {
         quotes: (ur) => quotes.filter(quote => quote.by === ur.id),
+    },
+    Mutation: {
+        addUser: (_,{firstName,lastName,email,password}) => { 
+            const id = randomBytes(5).toString("hex")
+            users.push({
+                id,
+                firstName,
+                lastName,
+                email,
+                password
+            })
+            return users.find(user => user.id === id)
+        }
     }
 }
 
