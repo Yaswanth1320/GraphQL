@@ -19,23 +19,11 @@ import './models/user.js';
 import './models/Quotes.js';
 import { resolvers } from "./resolvers.js";
 
-const getUser = async(token) =>{
-    try {
-        if(token){
-            const user = jwt.verify(token,JWT_SECERT);
-            return user;
-        }
-        return null;
-    } catch (error) {
-        return null;
-    }
-}
-
 
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({req}) =>{
+    context: async({req}) =>{
         const {authorization} = req.headers.authorization || "";
         if(authorization){
             const {userId} = jwt.verify(authorization,JWT_SECERT)

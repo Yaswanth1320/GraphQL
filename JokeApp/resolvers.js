@@ -42,16 +42,16 @@ export const resolvers = {
         },
         createQuote: async(_,{name},{userId}) => {
             console.log(userId);
-            // if(!userId){
-            //     throw new Error('You must be logged in')
-            // }else{
-            //     const newQuote= new Quote({
-            //         name,
-            //         by:userId
-            //     })
-            //     await newQuote.save()
-            //     return "Quote saved Successfully"
-            // }
+            if(!userId){
+                throw new Error('You must be logged in')
+            }else{
+                const newQuote= new Quote({
+                    name,
+                    by:userId
+                })
+                await newQuote.save()
+                return "Quote saved Successfully"
+            }
             
         }
     }
