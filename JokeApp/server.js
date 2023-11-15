@@ -1,5 +1,4 @@
 import { ApolloServer} from "@apollo/server";
-import { ApolloServerPluginLandingPageGraphQLPlayground} from "apollo-server-core";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./typeDefs.js";
 import mongoose from "mongoose";
@@ -20,20 +19,30 @@ import './models/user.js';
 import './models/Quotes.js';
 import { resolvers } from "./resolvers.js";
 
+const getUser = async(token) =>{
+    try {
+        if(token){
+            const user = jwt.verify(token,JWT_SECERT);
+            return user;
+        }
+        return null;
+    } catch (error) {
+        return null;
+    }
+}
+
+
 const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: ({req}) =>{
-        const {authorization} = req.headers
+        const {authorization} = req.headers.authorization || "";
         if(authorization){
             const {userId} = jwt.verify(authorization,JWT_SECERT)
             return {userId}
         }
-    },
-    plugins: [
-        ApolloServerPluginLandingPageGraphQLPlayground()
-    ]
-})
+    }
+});
 
 const { url } = await startStandaloneServer(server, {
     listen: { port: 4000 }

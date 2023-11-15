@@ -8,13 +8,13 @@ const User = mongoose.model("User");
 const Quote = mongoose.model("Quote");
 export const resolvers = {
     Query: {
-       users: () => users,
-       user:  (_,args) => users.find((ur) => args._id === ur._id),
-       quotes: () => quotes,
-       iquote: (_,args) => quotes.filter(quote => quote.by === args.by)
+       users: async () => await User.find({}),
+       user:  async(_,{_id}) => await User.findOne({_id}),
+       quotes: async() => await Quote.find({}),
+       iquote: async(_,{by}) => await Quote.findOne({by})
     },
     User: {
-        quotes: (ur) => quotes.filter(quote => quote.by === ur._id),
+        quotes: async(ur) => await Quote.find({by:ur._id})
     },
     Mutation: {
         addUser: async (_,{userType}) => { 
@@ -32,9 +32,7 @@ export const resolvers = {
         },
         signinUser: async(_,{userSignin}) => {
             const user =await User.findOne({email:userSignin.email})
-            if(!user){
-                throw new Error("Signup to Login")
-            }
+            if(!user) throw new Error("Signup to Login")
             const doMatch = await bcrypt.compare(userSignin.password, user.password)
             if(!doMatch){
                 throw new Error("email or password is invalid")
@@ -43,16 +41,19 @@ export const resolvers = {
             return {token}
         },
         createQuote: async(_,{name},{userId}) => {
-            if(!userId){
-                throw new Error('You must be logged in')
-            }
-            const newQuote= new Quote({
-                    name,
-                    by:userId
-                })
-                await newQuote.save()
-                return "Quote saved Successfully"
-            }
+            console.log(userId);
+            // if(!userId){
+            //     throw new Error('You must be logged in')
+            // }else{
+            //     const newQuote= new Quote({
+            //         name,
+            //         by:userId
+            //     })
+            //     await newQuote.save()
+            //     return "Quote saved Successfully"
+            // }
+            
+        }
     }
 }
 
