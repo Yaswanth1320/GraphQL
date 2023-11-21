@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import '../Styles/Login.css'
 
 export default function Login() {
     const [email,setEmail] = useState("");
@@ -9,7 +10,7 @@ export default function Login() {
         console.log(email,password)
     }
   return (
-    <div className='container'>
+    <div className='container my-container'>
       <h5>Login</h5>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input type="email" 
