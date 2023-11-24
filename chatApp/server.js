@@ -9,15 +9,20 @@ const resolvers = require('./graphql/resolvers')
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: {
-    "name": "yaswanth"
-  },
 });
 
-const { url } = startStandaloneServer(server,{
-  listen: { port: 8000 },
-});
+async function startServer(){
+  const { url } = await startStandaloneServer(server, {
+    context: async({ req, res }) =>{
+      const auth = req.headers
+       return auth
+    },
+   listen: { port: 8000 },
+ });
+}
+startServer()
 console.log(`🚀 Server ready at 8000`);
+
 
 sequelize
 .authenticate()

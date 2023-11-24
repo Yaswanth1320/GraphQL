@@ -2,17 +2,35 @@ const { User } = require('../models')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { JWT_SECERT } = require('../config/env.json')
+const { Op } = require('sequelize')
 
 module.exports =  {
     Query: {
+      users: async() =>{
+        const users = await User.findAll()
+        return users
+      },
       getUsers: async(parent,args,context,info) => {
-        console.log(context.name)
-         try {
-            const users = await User.findAll();
+        let user
+        try {
+            if(context && context.authorization){
+                jwt.verify(context.authorization, JWT_SECERT, (err, decodedToken) =>{
+                    if(err){
+                        throw new Error("not authenticated")
+                    }
+                    user = decodedToken
+                    console.log(user)
+                })
+            }
+
+            const users = await User.findAll({
+                where:{ email: { [Op.ne]: user.data.email } },
+            })
+
             return users
-         } catch (error) {
-            console.log(error)
-         }
+        } catch (error) {
+            throw new Error("not authenticated")
+        }
       },
       login: async(_,args) => {
         const { email, password } = args
