@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    background-color: rgb(209, 209, 209);
+}
+
+.main{
+    background-color: rgb(1, 48, 67);
+    width: 900px;
+    height: 580px;
+    border-radius: 30px;
+    padding: 1rem;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cyan{
+    position: absolute;
+    bottom: -10%;
+    width: 900px;
+    height: 700px;
+    left: -15%;
+}
+
+.black{
+    position: absolute;
+    width: 900px;
+    height: 700px;
+    top: -25%;
+    right: -20%;
+}
+
+.signup{
+    background-color: whitesmoke;
+    height: 470px;
+    width: 370px;
+    border-radius: 10px;
+}
+
