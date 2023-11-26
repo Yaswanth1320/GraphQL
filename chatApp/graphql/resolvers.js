@@ -61,6 +61,21 @@ module.exports =  {
             } catch (error) {
                 console.log(error)
             }
+      },
+      deleteUser: async(_,args) =>{
+            let {id} = args
+
+            try {
+                const user = await User.findOne({
+                    where: { id }
+                })
+                if(user){
+                    await user.destroy();
+                }
+                return user
+            } catch (error) {
+                console.log(error)
+            }
       }
     },
     Mutation:{

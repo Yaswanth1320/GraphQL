@@ -3,6 +3,7 @@
 module.exports = `#graphql
 
     type User{
+        id: ID
         username: String!
         email: String!
         token: String
@@ -12,6 +13,7 @@ module.exports = `#graphql
         getUsers: [User]!
         users: [User]!
         login(email: String!,password: String!): User!
+        deleteUser(id: ID!): User
     }
     type Mutation {
         register(

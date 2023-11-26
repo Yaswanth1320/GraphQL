@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Kanit&family=Montserrat&family=Orbitron&family=Playfair+Display&family=Poppins:wght@100;400&display=swap');
+
+.cyan{
+    position: absolute;
+    bottom: -10%;
+    width: 900px;
+    height: 700px;
+    left: -15%;
+}
+
+.black{
+    position: absolute;
+    width: 900px;
+    height: 700px;
+    top: -25%;
+    right: -20%;
+}
+
+.signup{
+    font-family: 'Poppins', sans-serif;
+    background-color: whitesmoke;
+    height: 590px;
+    width: 900px;
+    box-shadow: 0 8px 32px 0 rgba(3, 3, 4, 0.37);
+    z-index: 1;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.signup .signup-image{
+    width: 50%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px 0 0 10px;
+    
+}
+
+.signup .signup-image img{
+    width: 100%;
+    height: 100%;
+}
+
+.signup .signup-image .txt{
+    position: absolute;
+}
+
+.signup .signup-form {
+    position: relative;
+    width: 50%;
+}
+
+.signup .signup-form h1{
+    text-align: center;
+}
+
+.signup .signup-form .details{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 2rem 2rem 6rem 2rem;
+}
+
+.signup .signup-form .details .same input{
+    padding: 1rem 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+    border: none;
+    outline: none;
+
+}
+
+.signup .signup-form .details .same {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.signup .signup-form .details .same i{
+    font-size: 1.2rem;
+    padding: 1rem;
+    background-color: white;
+    color: #03d7a6;
+}
+
+.signup .signup-form .signup-btn{
+    position: absolute;
+    padding: 1.5rem;
+    right: -7%;
+    bottom: 0.3%;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    background-color: #03d7a6;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+}
+
+.signup .signup-form .signup-btn i{
+    font-size: 2rem;
+    color: white;
+}
+
+.signup .signup-form p{
+    text-align: center;
+}
