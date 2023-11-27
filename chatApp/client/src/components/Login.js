@@ -7,6 +7,7 @@ import black from '../Images/black.png'
 import '../Styles/Register.css'
 import { useNavigate,Link } from "react-router-dom";
 import { LOGIN_USER } from "../Graphql/Queries";
+import { useAuthDispatch } from "../Context/auth";
 
 function Register() {
 
@@ -15,12 +16,15 @@ function Register() {
     email: "",
     password: "",
   });
+
+  const dispatch = useAuthDispatch()
+
   const [loginUser,{loading}] = useLazyQuery(LOGIN_USER,{
     onError(err) {
       console.log(err);
     },
     onCompleted(data){
-      localStorage.setItem('token', data.login.token)
+      dispatch({type:'LOGIN', payload: data.login})
       navigate('/')
     }
   });
