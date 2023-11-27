@@ -1,33 +1,32 @@
 import React from "react";
 import { useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import cyan from '../Images/cyan.png'
 import bg from "../Images/bg.jpg"
 import black from '../Images/black.png'
 import '../Styles/Register.css'
-import { useNavigate } from "react-router-dom";
-import { REGISTER_USER } from "../Graphql/Queries";
+import { useNavigate,Link } from "react-router-dom";
+import { LOGIN_USER } from "../Graphql/Queries";
 
 function Register() {
 
   const navigate = useNavigate();
   const [variables, setVariables] = useState({
     email: "",
-    username: "",
     password: "",
-    confirmpassword: "",
   });
-  const [registerUser, { loading }] = useMutation(REGISTER_USER, {
-    update(_, res) {
-      navigate("/login");
-    },
+  const [loginUser,{loading}] = useLazyQuery(LOGIN_USER,{
     onError(err) {
       console.log(err);
     },
+    onCompleted(data){
+      localStorage.setItem('token', data.login.token)
+      navigate('/')
+    }
   });
 
   function submitForm() {
-    registerUser({ variables });
+    loginUser({variables})
   }
 
   return (
@@ -65,11 +64,12 @@ function Register() {
                 placeholder="Password"
               />
             </div>
+            <p>If your don't have an account?<Link to='/register'>register</Link></p>
           </div>
           <button onClick={submitForm} className="signup-btn">
             <i className="fa-solid fa-arrow-right"></i>
           </button>
-          <p>Forget password ?</p>
+          <p><Link to='/'>Forget password ?</Link></p>
         </div>
       </div>
     </div>

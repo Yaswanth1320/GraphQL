@@ -85,6 +85,9 @@
     color: #03d7a6;
 }
 
+.signup .signup-form .details p{
+    font-size: 0.8rem;
+}
 .signup .signup-form .signup-btn{
     position: absolute;
     padding: 1.5rem;

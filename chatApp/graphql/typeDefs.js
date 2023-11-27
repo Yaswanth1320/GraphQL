@@ -9,6 +9,12 @@ module.exports = `#graphql
         token: String
         createdAt: String
     }
+    type Message{
+        uuid: String!
+        content: String!
+        from: String!
+        to: String!
+    }
     type Query {
         getUsers: [User]!
         users: [User]!
@@ -22,5 +28,6 @@ module.exports = `#graphql
             password: String!,
             confirmpassword: String!
             ): User!
+        sendMessage(to:String!, content:String!): Message!
     }
 `;

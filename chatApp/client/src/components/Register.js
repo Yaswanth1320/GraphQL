@@ -5,7 +5,7 @@ import cyan from '../Images/cyan.png'
 import bg1 from "../Images/log.jpg"
 import black from '../Images/black.png'
 import '../Styles/Register.css'
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { REGISTER_USER } from "../Graphql/Queries";
 
 function Register() {
@@ -92,6 +92,7 @@ function Register() {
                 placeholder="Confirm Password"
               />
             </div>
+            <p>If your already have an account? <Link to='/login'>login</Link> here</p>
           </div>
           <button onClick={submitForm} className="signup-btn">
             <i className="fa-solid fa-arrow-right"></i>
