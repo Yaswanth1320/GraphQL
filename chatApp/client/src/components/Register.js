@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import cyan from '../Images/cyan.png'
-import bg from "../Images/bg.jpg"
+import bg1 from "../Images/log.jpg"
 import black from '../Images/black.png'
 import '../Styles/Register.css'
 import { useNavigate } from "react-router-dom";
@@ -36,7 +36,7 @@ function Register() {
       <img src={cyan} alt="cyan" className="cyan" />
       <div className="signup">
         <div className="signup-image">
-          <img src={bg} alt="inner" />
+          <img src={bg1} alt="inner" />
         </div>
         <div className="signup-form">
             <h1>Sign Up</h1>
@@ -96,7 +96,6 @@ function Register() {
           <button onClick={submitForm} className="signup-btn">
             <i className="fa-solid fa-arrow-right"></i>
           </button>
-          <p>Forget password ?</p>
         </div>
       </div>
     </div>

@@ -52,6 +52,7 @@
 }
 
 .signup .signup-form h1{
+    font-family: 'Orbitron', sans-serif;
     text-align: center;
 }
 
@@ -93,7 +94,13 @@
     border: none;
     outline: none;
     background-color: #03d7a6;
+    transition: all 0.3s ease-in-out;
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+}
+
+.signup .signup-form .signup-btn:hover{
+    cursor: pointer;
+    background-color: #4a4d4c;
 }
 
 .signup .signup-form .signup-btn i{
