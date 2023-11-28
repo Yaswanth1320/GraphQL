@@ -1,4 +1,4 @@
-const { User } = require("../../models");
+const { Message, User } = require("../../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { JWT_SECERT } = require("../../config/env.json");
@@ -15,9 +15,25 @@ module.exports = {
         if (!user) {
           throw new Error("Not authenticated");
         }
-        const users = await User.findAll({
+        let users = await User.findAll({
+          attributes:['username','imageUrl','email','createdAt'],
           where: { email: { [Op.ne]: user.data.email } },
         });
+
+        const allUserMessages = await Message.findAll({
+          where: {
+            [ Op.or ]: [{ from: user.data.email }, { to: user.data.email }]
+          },
+          order: [['createdAt', 'DESC']]
+        })
+
+        users = users.map(otherUser =>{
+          const latestMessage = allUserMessages.find(
+            m => m.from === otherUser.dataValues.email || m.to === otherUser.dataValues.email
+          )
+          otherUser.latestMessage = latestMessage
+          return otherUser
+        })
 
         return users;
       } catch (error) {

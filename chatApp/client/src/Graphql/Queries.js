@@ -21,11 +21,21 @@ export const REGISTER_USER = gql`
 `;
 
 export const LOGIN_USER = gql`
-    query($email: String!, $password: String!){
+  query ($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-    username
-    email
-    token
+      username
+      email
+      token
+    }
   }
-}
-`
+`;
+export const GET_USERS = gql`
+  query getUsers{
+    getUsers {
+      id
+      email
+      username
+      createdAt
+    }
+  }
+`;

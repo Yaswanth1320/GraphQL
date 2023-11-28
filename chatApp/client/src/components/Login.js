@@ -26,6 +26,7 @@ function Register() {
     onCompleted(data){
       dispatch({type:'LOGIN', payload: data.login})
       navigate('/')
+      window.location.reload();
     }
   });
 

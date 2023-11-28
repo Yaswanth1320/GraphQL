@@ -5,9 +5,11 @@ module.exports = `#graphql
     type User{
         id: ID
         username: String!
-        email: String!
+        email: String
         token: String
+        imageUrl: String!
         createdAt: String
+        latestMessage: Message
     }
     type Message{
         uuid: String!
