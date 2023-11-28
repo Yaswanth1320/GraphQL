@@ -29,7 +29,7 @@ module.exports = {
 
         users = users.map(otherUser =>{
           const latestMessage = allUserMessages.find(
-            m => m.from === otherUser.dataValues.email || m.to === otherUser.dataValues.email
+            m => m.from === otherUser.email || m.to === otherUser.email
           )
           otherUser.latestMessage = latestMessage
           return otherUser
