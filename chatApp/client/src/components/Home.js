@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthDispatch } from "../Context/auth";
 import "../Styles/Home.css";
 import black from "../Images/black.png";
 import cyan from "../Images/cyan.png";
-import { useLazyQuery } from "@apollo/client";
-import { GET_MESSAGES } from "../Graphql/Queries";
 import Users from "./Users";
+import Messages from "./Messages";
 
 function Home() {
   const [selectedUser,setSelectedUser] = useState(null)
@@ -17,19 +16,6 @@ function Home() {
   function logout() {
     dispatch({ type: "LOGOUT" });
     navigate("/login");
-  }
-
-
-  const [getMessages,{loading: messagesLoading,data: messagesData}] = useLazyQuery(GET_MESSAGES)
-
-  useEffect(() =>{
-      if(selectedUser){
-        getMessages({ variables:{ from: selectedUser } })
-      }
-  },[selectedUser])
-
-  if(messagesData){
-    console.log(messagesData.getMessages)
   }
 
   return (
@@ -69,12 +55,7 @@ function Home() {
             <Users setSelectedUser={setSelectedUser}/>
         </div>
 
-        <div className="messages">
-          {messagesData && messagesData.getMessages.length > 0 ? (
-              messagesData.getMessages.map(message =>(
-                <p key={message.uuid}>{message.content}</p>
-              ))) : (<p>You are now connected</p>)}
-        </div>
+        <Messages/>
       </div>
     </div>
   );

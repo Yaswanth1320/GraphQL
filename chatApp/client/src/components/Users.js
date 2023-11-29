@@ -19,9 +19,9 @@ export default function Users({setSelectedUser}) {
   } else if (users.length > 0) {
     userlist = users.map((user) => (
       <div
-        key={user.id}
+        key={user.username}
         className="user"
-        onClick={() => setSelectedUser(user.email)}
+        onClick={() => dispatch({type:'SET_SELECTED_USER', payload:user.email})}
       >
         <img src={user.imageUrl} width="55px" height="55px" alt="user" />
         <div className="latest">
