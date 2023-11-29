@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Josefin+Sans&family=Kanit&family=Montserrat&family=Nova+Square&family=Orbitron&family=Playfair+Display&family=Poppins:ital,wght@0,100;0,400;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Josefin+Sans&family=Kanit&family=Montserrat&family=Nova+Square&family=Nunito+Sans:opsz@6..12&family=Orbitron&family=Playfair+Display&family=Poppins:ital,wght@0,100;0,400;1,100&display=swap');
 
 .main{
     width: 100%;
@@ -12,7 +12,7 @@
 
 .main .chat{
     background-color: whitesmoke;
-    width: 80vw;
+    width: 70vw;
     height: 90vh;
     display: flex;
     z-index: 1;
@@ -21,6 +21,7 @@
 
 .main .chat .navbar{
     border-radius: 5px 0 0 5px;
+    width: 14vw;
     padding: 1.2rem 1.7rem;
     color: white;
     background-color: rgb(70, 69, 69);
@@ -119,10 +120,45 @@
 
 .chat .users .user-list .user{
     width: 100%;
-    height: 60px;
+    height: 75px;
+    display: flex;
+    padding: 5px 15px;
+    align-items: center;
+    gap: 1rem;
 }
 
 .chat .users .user-list .user:hover{
     cursor: pointer;
     background-color: #d7d4d4;
+}
+
+.chat .users .user-list .user img{
+    border-radius: 50%;
+}
+
+.chat .users .user-list .user .latest{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.chat .users .user-list .user .latest p{
+    border: none;
+    font-size: 0.8rem;
+    padding: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    color: gray;
+
+}
+.chat .users .user-list .user .latest h4{
+    color: #10aa62;
+    font-family: 'Kanit', sans-serif;
+    text-transform: capitalize;
+    font-weight: 900;
+}
+
+.chat .messages{
+    height: 100%;
+    width: 32vw;
+    overflow: hidden;
 }

@@ -30,11 +30,29 @@ export const LOGIN_USER = gql`
   }
 `;
 export const GET_USERS = gql`
-  query getUsers{
+  query {
     getUsers {
-      id
       email
       username
+      createdAt
+      imageUrl
+      latestMessage {
+        from
+        to
+        content
+        createdAt
+      }
+    }
+  }
+`;
+
+export const GET_MESSAGES = gql`
+  query ($from: String!) {
+    getMessages(from: $from) {
+      uuid
+      from
+      to
+      content
       createdAt
     }
   }

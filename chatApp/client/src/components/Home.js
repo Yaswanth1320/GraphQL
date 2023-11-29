@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthDispatch } from "../Context/auth";
 import "../Styles/Home.css";
 import black from "../Images/black.png";
 import cyan from "../Images/cyan.png";
-import { useQuery } from "@apollo/client";
-import { GET_USERS } from "../Graphql/Queries";
+import { useLazyQuery } from "@apollo/client";
+import { GET_MESSAGES } from "../Graphql/Queries";
+import Users from "./Users";
 
 function Home() {
+  const [selectedUser,setSelectedUser] = useState(null)
   const user = localStorage.getItem("token");
   const navigate = useNavigate();
   const dispatch = useAuthDispatch();
@@ -17,26 +19,17 @@ function Home() {
     navigate("/login");
   }
 
-  const { loading, data, error } = useQuery(GET_USERS);
 
-  if (error) {
-    console.log(error);
-  }
-  if (data) {
-    console.log(data)
-  }
+  const [getMessages,{loading: messagesLoading,data: messagesData}] = useLazyQuery(GET_MESSAGES)
 
-  let userlist
-  if(!data || loading){
-    userlist = <p>Loading..</p>
-  }else if(data.getUsers.length === 0){
-    userlist = <p>No user found</p>
-  }else if(data.getUsers.length > 0){
-      userlist = data.getUsers.map((user) =>(
-        <div key={user.id} className="user">
-          <h5>{user.username}</h5>
-        </div>
-      ))
+  useEffect(() =>{
+      if(selectedUser){
+        getMessages({ variables:{ from: selectedUser } })
+      }
+  },[selectedUser])
+
+  if(messagesData){
+    console.log(messagesData.getMessages)
   }
 
   return (
@@ -73,10 +66,14 @@ function Home() {
             <i className="fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Search Messages" />
           </div>
-          <div className="user-list">
-            <p>Online</p>
-            {userlist}
-          </div>
+            <Users setSelectedUser={setSelectedUser}/>
+        </div>
+
+        <div className="messages">
+          {messagesData && messagesData.getMessages.length > 0 ? (
+              messagesData.getMessages.map(message =>(
+                <p key={message.uuid}>{message.content}</p>
+              ))) : (<p>You are now connected</p>)}
         </div>
       </div>
     </div>

@@ -31,6 +31,7 @@ module.exports = `#graphql
             email: String!
             password: String!,
             confirmpassword: String!
+            imageUrl: String!
             ): User!
         sendMessage(to:String!, content:String!): Message!
     }

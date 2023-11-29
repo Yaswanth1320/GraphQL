@@ -92,7 +92,7 @@ module.exports = {
   },
   Mutation: {
     register: async (_, args) => {
-      let { username, email, password, confirmpassword } = args;
+      let { username, email, password, confirmpassword,imageUrl} = args;
       let errors = {};
       try {
         if (email.trim() == "") errors.email = "Email must not be empty";
@@ -120,6 +120,7 @@ module.exports = {
           username,
           email,
           password,
+          imageUrl,
         });
         return user;
       } catch (error) {
