@@ -71,6 +71,7 @@
 
 .main .chat .users{
     width: 24vw;
+    height: 100%;
     border-right: 1px solid gray;
 }
 
@@ -124,6 +125,16 @@
     padding: 5px 15px;
     align-items: center;
     gap: 1rem;
+}
+
+.chat .users .user-list .user-scroll{
+    height: 62vh;
+    overflow: scroll;
+    
+}
+
+.user-scroll::-webkit-scrollbar{
+    display: none;
 }
 
 .chat .users .user-list .user:hover{
@@ -261,7 +272,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 10px;
     background: transparent;
     backdrop-filter: blur( 7px );
@@ -270,23 +281,35 @@
 }
 
 .msg-container form .search{
-    width: 88%;
+    width: 85%;
     padding: 12px 15px;
     border: none;
     outline: none;
-    border-radius: 30px;
+    border-radius: 30px 0  0 30px;
     border: 1px solid gray;
     background-color: transparent;
     font-size: 1.05rem;
+    border-right: none;
 }
 
 .msg-container form .submit{
-    width:11%;
-    padding: 12px 0;
-    border-radius: 18px;
+    width:14%;
+    padding: 10px 0;
+    border-radius: 0 25px 25px 0;
     border: none;
     outline: none;
     border: 1px solid gray;
     background-color: transparent;
-    font-size: 0.8rem;
+    border-left: none;
+}
+
+.msg-container form .submit i{
+    font-size: 1.41rem;
+    color: #10aa62;
+}
+
+.start{
+    font-family: 'Kanit', sans-serif;
+    text-align: center;
+    margin-bottom: 1rem;
 }

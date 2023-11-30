@@ -57,3 +57,15 @@ export const GET_MESSAGES = gql`
     }
   }
 `;
+
+export const SEND_MESSAGE = gql`
+  mutation ($to: String!, $content: String!) {
+    sendMessage(to: $to, content: $content) {
+      uuid
+      content
+      from
+      to
+      createdAt
+    }
+  }
+`;

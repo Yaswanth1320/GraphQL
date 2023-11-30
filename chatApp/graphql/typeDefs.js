@@ -1,5 +1,3 @@
-
-
 module.exports = `#graphql
 
     type User{
@@ -7,7 +5,7 @@ module.exports = `#graphql
         username: String!
         email: String
         token: String
-        imageUrl: String!
+        imageUrl: String
         createdAt: String
         latestMessage: Message
     }
@@ -31,7 +29,6 @@ module.exports = `#graphql
             email: String!
             password: String!,
             confirmpassword: String!
-            imageUrl: String!
             ): User!
         sendMessage(to:String!, content:String!): Message!
     }

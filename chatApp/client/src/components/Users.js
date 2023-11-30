@@ -23,7 +23,7 @@ export default function Users({setSelectedUser}) {
         className="user"
         onClick={() => dispatch({type:'SET_SELECTED_USER', payload:user.email})}
       >
-        <img src={user.imageUrl} width="55px" height="55px" alt="user" />
+        <img src={ user.imageUrl ? user.imageUrl:'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png'} width="55px" height="55px" alt="user" />
         <div className="latest">
           <h4>{user.username}</h4>
           <p>
@@ -38,7 +38,9 @@ export default function Users({setSelectedUser}) {
   return (
     <div className="user-list">
       <p>Online</p>
+      <div className="user-scroll">
       {userlist}
+      </div>
     </div>
   );
 }

@@ -31,6 +31,8 @@ function Register() {
   }
 
   return (
+    <>
+    {loading && <div className="spinner">Loading...</div>}
     <div className="body-content">
       <img src={black} alt="black" className="black" />
       <img src={cyan} alt="cyan" className="cyan" />
@@ -100,6 +102,7 @@ function Register() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
