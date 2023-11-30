@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin&family=DM+Serif+Display&family=Josefin+Sans&family=Kanit&family=Montserrat&family=Nova+Square&family=Nunito+Sans:opsz@6..12&family=Orbitron&family=Playfair+Display&family=Poppins:ital,wght@0,100;0,400;1,100&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=DM+Sans:opsz@9..40&family=DM+Serif+Display&family=Josefin+Sans&family=Kanit&family=Montserrat&family=Nova+Square&family=Nunito+Sans:opsz@6..12&family=Orbitron&family=Playfair+Display&family=Poppins:ital,wght@0,100;0,400;1,100&family=Saira+Extra+Condensed&display=swap');
 .main{
     width: 100%;
     height: 100vh;
@@ -13,7 +12,7 @@
 .main .chat{
     background-color: whitesmoke;
     width: 70vw;
-    height: 90vh;
+    height: 80vh;
     display: flex;
     z-index: 1;
     border-radius: 5px;
@@ -157,12 +156,75 @@
     font-weight: 900;
 }
 
+.chat .msg-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.chat .msg-container .heading{
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    gap: 1rem;
+}
+
+.chat .msg-container .heading .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat .msg-container .heading .logo img{
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.chat .msg-container .heading .logo .info .name{
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    font-family: 'Kanit', sans-serif;
+}
+
+.chat .msg-container .heading .logo .info .status{
+    display: flex;
+    align-items: center;
+    color: gray;
+    gap: 3px;
+    font-size: 0.8rem;
+    margin-left: 2px;
+    font-family: 'Nunito Sans', sans-serif; 
+}
+
+.chat .msg-container .heading .logo .info .status i{
+    color: green;
+    padding-top: 2px;
+    font-size: 0.3rem;
+}
+
+.chat .msg-container .heading .call{
+    margin-right: 1rem;
+    padding: 2px 7px;
+    background-color: #b1f0d3;
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.chat .msg-container .heading .call i{
+    font-size: 0.7rem;
+    color: green;
+}
+
 .chat .messages{
     height: 100%;
     padding: 10px;
     width: 32vw;
     overflow: hidden;
     font-family: 'Cabin', sans-serif;
+    overflow: scroll;
 }
 
 .chat .messages .chat-dir{
@@ -170,10 +232,14 @@
     flex-direction: column-reverse;
 }
 
+.chat .messages::-webkit-scrollbar{
+    display: none;
+}
+
 .chat .messages .chat-dir .chat-style{
     width: fit-content;
     padding: 7px 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 
@@ -191,3 +257,36 @@
     border-radius: 0 10px 10px 10px ;
 }
 
+.msg-container form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background: transparent;
+    backdrop-filter: blur( 7px );
+    -webkit-backdrop-filter: blur( 4px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.msg-container form .search{
+    width: 88%;
+    padding: 12px 15px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    border: 1px solid gray;
+    background-color: transparent;
+    font-size: 1.05rem;
+}
+
+.msg-container form .submit{
+    width:11%;
+    padding: 12px 0;
+    border-radius: 18px;
+    border: none;
+    outline: none;
+    border: 1px solid gray;
+    background-color: transparent;
+    font-size: 0.8rem;
+}

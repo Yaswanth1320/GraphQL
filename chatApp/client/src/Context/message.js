@@ -4,33 +4,50 @@ const MessageStateContext = createContext();
 const MessageDispatchContext = createContext();
 
 const messageReducer = (state, action) => {
-    let usersCopy
+  let usersCopy,userIndex;
+  const { email, message, messages } = action.payload;
   switch (action.type) {
-    case 'SET_USERS':
-        return{
-            ...state,
-            users: action.payload
-        }
-    case 'SET_USER_MESSAGES':
-        const { email, messages } = action.payload
-        usersCopy =[...state.users]
+    case "SET_USERS":
+      return {
+        ...state,
+        users: action.payload,
+      };
+    case "SET_USER_MESSAGES":
+      usersCopy = [...state.users];
 
-        const userIndex = usersCopy.findIndex(u => u.email === email)
-        usersCopy[userIndex] = { ...usersCopy[userIndex] , messages}
-        return{
-            ...state,
-            users: usersCopy
-        }
+      userIndex = usersCopy.findIndex((u) => u.email === email);
+      usersCopy[userIndex] = { ...usersCopy[userIndex], messages };
+      return {
+        ...state,
+        users: usersCopy,
+      };
+
+    case "SET_SELECTED_USER":
+      usersCopy = state.users.map((user) => ({
+        ...user,
+        selected: user.email === action.payload,
+      }));
+      return {
+        ...state,
+        users: usersCopy,
+      };
+    case "ADD_MESSAGE":
+      usersCopy = [...state.users];
+      userIndex = usersCopy.findIndex((u) => u.email === email);
+
+      let newUser ={
+        ...usersCopy[userIndex],
+        messages: [message, ...usersCopy[userIndex].messages]
+      }
+
+      usersCopy[userIndex] = newUser
+
+      return{
+        ...state,
+        users: usersCopy,
         
-    case 'SET_SELECTED_USER':
-        usersCopy = state.users.map(user =>({
-            ...user,
-            selected: user.email === action.payload
-        }))
-        return{
-            ...state,
-            users: usersCopy
-        } 
+      }
+
     default:
       throw new Error(`Unknown action type ${action.type}`);
   }
