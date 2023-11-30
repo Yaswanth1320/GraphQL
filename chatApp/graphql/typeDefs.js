@@ -9,6 +9,13 @@ module.exports = `#graphql
         createdAt: String
         latestMessage: Message
     }
+    type Reaction{
+        uuid: String!
+        content: String!
+        createdAt: String
+        message: Message!
+        user: User!
+    }
     type Message{
         uuid: String!
         content: String!
@@ -31,5 +38,9 @@ module.exports = `#graphql
             confirmpassword: String!
             ): User!
         sendMessage(to:String!, content:String!): Message!
+        reactToMessage(uuid: String!, content: String!): Reaction!
+    },
+    type Subscription{
+        newMessage: Message!
     }
 `;
