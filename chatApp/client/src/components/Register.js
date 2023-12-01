@@ -8,6 +8,7 @@ import '../Styles/Register.css'
 import { useNavigate,Link } from "react-router-dom";
 import { REGISTER_USER } from "../Graphql/Queries";
 import { SpinnerDotted } from 'spinners-react';
+import Swal from 'sweetalert2'
 
 function Register() {
 
@@ -20,10 +21,21 @@ function Register() {
   });
   const [registerUser, { loading }] = useMutation(REGISTER_USER, {
     update(_, res) {
+      Swal.fire({
+        title: 'Success',
+        text: 'User registered successfully',
+        icon: 'success',
+        confirmButtonText: 'close'
+      })
       navigate("/login");
     },
     onError(err) {
-      console.log(err);
+      Swal.fire({
+        title: 'Invalid',
+        text: 'Fields Show not be empty',
+        icon: 'error',
+        confirmButtonText: 'close'
+      })
     },
   });
 

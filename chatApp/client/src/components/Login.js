@@ -9,6 +9,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { LOGIN_USER } from "../Graphql/Queries";
 import { useAuthDispatch } from "../Context/auth";
 import { SpinnerDotted } from 'spinners-react';
+import Swal from 'sweetalert2'
 
 function Register() {
   const navigate = useNavigate();
@@ -21,7 +22,12 @@ function Register() {
 
   const [loginUser, { loading }] = useLazyQuery(LOGIN_USER, {
     onError(err) {
-      console.log(err);
+      Swal.fire({
+        title: 'Invalid User',
+        text: 'Invalid email or password',
+        icon: 'error',
+        confirmButtonText: 'close'
+      })
     },
     onCompleted(data) {
       dispatch({ type: "LOGIN", payload: data.login });

@@ -6,6 +6,7 @@ import black from "../Images/black.png";
 import cyan from "../Images/cyan.png";
 import Users from "./Users";
 import Messages from "./Messages";
+import Swal from 'sweetalert2'
 
 function Home() {
   const [selectedUser,setSelectedUser] = useState(null)
@@ -15,6 +16,12 @@ function Home() {
 
   function logout() {
     dispatch({ type: "LOGOUT" });
+    Swal.fire({
+      title: 'Success!',
+      text: 'You have been Logged Out',
+      icon: 'success',
+      confirmButtonText: 'close'
+    })
     navigate("/login");
   }
 
