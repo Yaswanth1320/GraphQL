@@ -39,9 +39,10 @@ function Register() {
     },
   });
 
-  function submitForm() {
+  const submitForm = e => {
+    e.preventDefault();
     registerUser({ variables });
-  }
+  };
 
   return (
     <>
@@ -55,6 +56,11 @@ function Register() {
         </div>
         <div className="signup-form">
             <h1>Sign Up</h1>
+            <form
+            onKeyDown={(e) => {
+              if (e.key === "Enter") submitForm(e);
+            }}
+          >
           <div className="details">
             <div className="same">
               <i className="fa-solid fa-user"></i>
@@ -112,6 +118,7 @@ function Register() {
           <button onClick={submitForm} className="signup-btn">
             <i className="fa-solid fa-arrow-right"></i>
           </button>
+          </form>
         </div>
       </div>
     </div>
