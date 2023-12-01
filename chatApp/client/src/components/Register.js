@@ -7,6 +7,7 @@ import black from '../Images/black.png'
 import '../Styles/Register.css'
 import { useNavigate,Link } from "react-router-dom";
 import { REGISTER_USER } from "../Graphql/Queries";
+import { SpinnerDotted } from 'spinners-react';
 
 function Register() {
 
@@ -32,7 +33,7 @@ function Register() {
 
   return (
     <>
-    {loading && <div className="spinner">Loading...</div>}
+    {loading && <div className="spinner"><SpinnerDotted /></div>}
     <div className="body-content">
       <img src={black} alt="black" className="black" />
       <img src={cyan} alt="cyan" className="cyan" />

@@ -8,6 +8,7 @@ import "../Styles/Register.css";
 import { useNavigate, Link } from "react-router-dom";
 import { LOGIN_USER } from "../Graphql/Queries";
 import { useAuthDispatch } from "../Context/auth";
+import { SpinnerDotted } from 'spinners-react';
 
 function Register() {
   const navigate = useNavigate();
@@ -35,6 +36,8 @@ function Register() {
   };
 
   return (
+    <>
+    {loading && <div className="spinner"><SpinnerDotted /></div>}
     <div className="body-content">
       <img src={black} alt="black" className="black" />
       <img src={cyan} alt="cyan" className="cyan" />
@@ -89,6 +92,7 @@ function Register() {
         </div>
       </div>
     </div>
+  </>
   );
 }
 

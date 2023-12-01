@@ -22,6 +22,7 @@ module.exports = `#graphql
         from: String!
         to: String!
         createdAt: String
+        reactions: [Reaction]!
     }
     type Query {
         getUsers: [User]!
@@ -29,6 +30,7 @@ module.exports = `#graphql
         login(email: String!,password: String!): User!
         deleteUser(id: ID!): User
         getMessages(from:String!): [Message]!
+        getReactions: [Reaction]!
     }
     type Mutation {
         register(

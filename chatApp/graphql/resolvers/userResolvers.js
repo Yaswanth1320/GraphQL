@@ -1,4 +1,4 @@
-const { Message, User } = require("../../models");
+const { Message, User,Reaction } = require("../../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { JWT_SECERT } = require("../../config/env.json");
@@ -88,6 +88,10 @@ module.exports = {
         console.log(error);
       }
     },
+    getReactions: async() =>{
+        const reactions = await Reaction.findAll({})
+        return reactions
+    }
   },
   Mutation: {
     register: async (_, args) => {

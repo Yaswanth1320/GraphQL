@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin&family=DM+Sans:opsz@9..40&family=DM+Serif+Display&family=Josefin+Sans&family=Kanit&family=Montserrat&family=Nova+Square&family=Nunito+Sans:opsz@6..12&family=Orbitron&family=Playfair+Display&family=Poppins:ital,wght@0,100;0,400;1,100&family=Saira+Extra+Condensed&display=swap');
+
 .main{
     width: 100%;
     height: 100vh;
@@ -241,6 +242,7 @@
 .chat .messages .chat-dir{
     display: flex;
     flex-direction: column-reverse;
+    position: relative;
 }
 
 .chat .messages::-webkit-scrollbar{
@@ -251,6 +253,7 @@
     width: fit-content;
     padding: 7px 10px;
     margin-bottom: 20px;
+    position: relative;
 }
 
 
@@ -266,6 +269,54 @@
     background-color: #d7d4d4;
     color: black;
     border-radius: 0 10px 10px 10px ;
+}
+
+.chat .messages .chat-dir .sender .reaction{
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    left: 0;
+    transform: translate(-13px,-15px);
+}
+
+.chat .messages .chat-dir .reciever .emoji{
+    position: absolute;
+    padding: 3px 3px;
+    font-size: 0.7rem;
+    bottom: 0;
+    transform: translate(-5px,15px);
+    background-color: rgb(203, 203, 203);
+    border-radius: 30px;
+}
+
+.chat .messages .chat-dir .sender .emoji{
+    display: flex;
+    position: absolute;
+    padding: 3px 3px;
+    font-size: 0.7rem;
+    bottom: 0;
+    transform: translate(-5px,15px);
+    background-color: #5cd89f;
+    border-radius: 30px;
+}
+
+.chat .messages .chat-dir .reciever .reaction{
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    right: 0;
+    transform: translate(13px, -15px);
+}
+
+.chat .messages .chat-dir .chat-style i{
+    cursor: pointer;
+    background: transparent;
+    font-size: 0.6rem;
+    color: gray;
 }
 
 .msg-container form{
@@ -310,6 +361,34 @@
 
 .start{
     font-family: 'Kanit', sans-serif;
+    position: absolute;
+    bottom: 0;
+    left: 40%;
     text-align: center;
-    margin-bottom: 1rem;
+    transform: translate(-20px,13rem);
+    z-index: 1000;
+}
+
+.pop{
+    z-index: 100;
+    width: 210px;
+    height: 40px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    background-color: azure;
+}
+
+.pop button{
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    background-color: transparent;
+    transition:all 0.15s ease-in-out;
+}
+
+.pop button:hover{
+    cursor: pointer;
+    font-size: 1.8rem;
 }

@@ -54,6 +54,10 @@ export const GET_MESSAGES = gql`
       to
       content
       createdAt
+      reactions{
+        uuid
+        content
+      }
     }
   }
 `;
@@ -69,3 +73,13 @@ export const SEND_MESSAGE = gql`
     }
   }
 `;
+
+export const REACT_TO_MESSAGE = gql`
+  mutation($uuid: String!, $content: String!){
+  reactToMessage(uuid: $uuid, content: $content) {
+    uuid
+    content
+    createdAt
+  }
+}
+`

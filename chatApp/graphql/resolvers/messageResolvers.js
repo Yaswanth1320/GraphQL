@@ -24,6 +24,7 @@ module.exports = {
             to: { [Op.in]: emails },
           },
           order: [["createdAt", "DESC"]],
+          include: [{ model: Reaction, as: 'reactions'}]
         });
         return messages;
       } catch (error) {

@@ -35,6 +35,8 @@ const messageReducer = (state, action) => {
       usersCopy = [...state.users];
       userIndex = usersCopy.findIndex((u) => u.email === email);
 
+      message.reactions = []
+
       let newUser ={
         ...usersCopy[userIndex],
         messages: [message, ...usersCopy[userIndex].messages],

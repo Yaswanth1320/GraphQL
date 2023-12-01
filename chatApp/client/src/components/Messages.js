@@ -3,6 +3,7 @@ import { GET_MESSAGES, SEND_MESSAGE } from "../Graphql/Queries";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { useMessageDispatch, useMessageState } from "../Context/message";
 import Chat from "./chat";
+import { SpinnerDotted } from 'spinners-react';
 
 export default function Messages() {
   const [content, setContent] = useState("");
@@ -54,13 +55,13 @@ export default function Messages() {
   if (!messages && !messagesLoading) {
     selectedChatMarkup = <p className="start">Select a friend</p>;
   } else if (messagesLoading) {
-    selectedChatMarkup = <p className="start">Loading...</p>;
+    selectedChatMarkup = <p className="start"><SpinnerDotted /></p>;
   } else if (messages.length > 0) {
     selectedChatMarkup = messages.map((message) => (
       <Chat key={message.uuid} message={message} />
     ));
   } else if (messages.length === 0) {
-    selectedChatMarkup = <p className="start">You are connected! send your first message!</p>;
+    selectedChatMarkup = <p className="start">connected!<br/> send your first message!</p>;
   }
 
   let chatuser = "user";
